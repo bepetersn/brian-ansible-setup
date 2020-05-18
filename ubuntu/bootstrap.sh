@@ -5,4 +5,6 @@ sudo apt update
 sudo apt upgrade -y
 sudo apt install -y ansible
 sudo apt install -y git 
-git clone https://raw.githubusercontent.com/bepetersn/brian-ansible-setup .dev-env
+git clone https://github.com/bepetersn/brian-ansible-setup .dev-env
+cd .dev-env
+ansible-playbook ubuntu.yml -vv
