@@ -20,10 +20,11 @@
       name: "{{ item }}"
       state: present
       update_cache: true
-    loop:
+    with_items:
       - neovim
       - curl
       - wget
+      - httpie
       - git
       - yarn
     become: true
