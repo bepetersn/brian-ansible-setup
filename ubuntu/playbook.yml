@@ -23,22 +23,27 @@
 
   - name: Add docker repo
     apt_repository:
-      repo: deb https://download.docker.com/linux/ubuntu focal stable
+      repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable
       state: present
+    become: true
 
   - name: Install packages with apt
     apt:
-      name: "{{ item }}"
+      name: ['neovim', 'curl', 'wget', 'httpie', 'git', 'yarn', 'docker-ce', 'docker-ce-cli', 'containerd.io']
       state: present
       update_cache: true
-    with_items:
-      - neovim
-      - curl
-      - wget
-      - httpie
-      - git
-      - yarn
-      - docker-ce 
-      - docker-ce-cli 
-      - containerd.io
     become: true
+  
+  - name: Setup docker group
+    group: 
+      name: docker
+      state: present
+    become: true
+
+  - name: Setup user with docker group
+    user:
+      name: "{{ ansible_user }}"
+      groups: docker
+      append: true
+    become: true
+
