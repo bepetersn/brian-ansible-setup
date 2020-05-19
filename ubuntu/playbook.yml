@@ -15,13 +15,13 @@
       state: present
     become: true
 
-    name: Add docker pubkey
+  - name: Add docker pubkey
     apt_key: 
       url: https://download.docker.com/linux/ubuntu/gpg
       state: present
     become: true
 
-    name: Add docker repo
+  - name: Add docker repo
     apt_repository:
       repo: deb https://download.docker.com/linux/ubuntu focal stable
       state: present
