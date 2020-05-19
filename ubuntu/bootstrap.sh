@@ -4,6 +4,7 @@ sudo apt-add-repository --yes --update ppa:git-core/ppa
 sudo apt update
 sudo apt install -y ansible
 sudo apt install -y git 
+rm -rf .dev-env
 git clone https://github.com/bepetersn/brian-ansible-setup .dev-env
 cd .dev-env
 ansible-playbook ubuntu/playbook.yml -vv --ask-become-pass
