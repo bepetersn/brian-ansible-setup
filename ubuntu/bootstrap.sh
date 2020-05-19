@@ -1,6 +1,6 @@
 #!/bin/bash 
-sudo apt-add-repository --yes --update ppa:ansible/ansible
-sudo apt-add-repository --yes --update ppa:git-core/ppa
+sudo apt-add-repository -y ppa:ansible/ansible
+sudo apt-add-repository -y ppa:git-core/ppa
 sudo apt install -y ansible
 sudo apt install -y git 
 rm -rf .dev-env
