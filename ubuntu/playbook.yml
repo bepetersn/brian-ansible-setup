@@ -15,6 +15,17 @@
       state: present
     become: true
 
+    name: Add docker pubkey
+    apt_key: 
+      url: https://download.docker.com/linux/ubuntu/gpg
+      state: present
+    become: true
+
+    name: Add docker repo
+    apt_repository:
+      repo: deb https://download.docker.com/linux/ubuntu focal stable
+      state: present
+
   - name: Install packages with apt
     apt:
       name: "{{ item }}"
@@ -27,4 +38,7 @@
       - httpie
       - git
       - yarn
+      - docker-ce 
+      - docker-ce-cli 
+      - containerd.io
     become: true
