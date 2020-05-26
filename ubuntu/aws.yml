@@ -1,0 +1,14 @@
+---
+- hosts: localhost
+  tasks:
+
+    - name: Get AWS CLI binary
+      unarchive:
+        src: https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip
+        remote_src: yes
+        dest: /home/{{ ansible_user }}/Downloads/
+        creates: /home/{{ ansible_user }}/Downloads/aws
+
+    - name: Install AWS CLI
+      script: /home/{{ ansible_user }}/Downloads/aws/install --update
+      become: true

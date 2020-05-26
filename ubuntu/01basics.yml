@@ -1,0 +1,25 @@
+---
+
+- hosts: localhost 
+  tasks: 
+
+  - name: Add yarn public key
+    apt_key: 
+      url: https://dl.yarnpkg.com/debian/pubkey.gpg
+      state: present
+    become: true
+
+  - name: Add yarn repo
+    apt_repository: 
+      repo: deb https://dl.yarnpkg.com/debian stable main
+      state: present
+    become: true
+
+  - name: Install packages with apt
+    apt:
+      name: ['neovim', 'curl', 'wget', 'httpie', 'git', 'yarn', 'chromium-browser']
+      state: present
+      update_cache: true
+    become: true
+
+

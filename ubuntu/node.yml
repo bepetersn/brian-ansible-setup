@@ -1,0 +1,21 @@
+---
+
+- hosts: localhost
+  vars: 
+    version: 14
+  tasks: 
+
+    - name: Add Node PPA
+      get_url:
+        url: https://deb.nodesource.com/setup_{{ version }}.x
+        dest: ~/Downloads/nodesource_setup.sh
+
+    - name: Setup node PPA
+      script: ~/Downloads/nodesource_setup.sh
+      become: yes
+
+    - name: Install Node
+      apt:
+        name: nodejs
+        update_cache: yes
+      become: yes

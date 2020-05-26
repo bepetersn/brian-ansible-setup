@@ -1,0 +1,15 @@
+---
+ 
+- hosts: localhost
+  tasks:
+    - name: Get Zoom Installer
+      get_url: 
+        url: https://zoom.us/client/latest/zoom_amd64.deb
+        dest: /home/{{ ansible_user }}/zoom_amd64.deb
+      become: true
+
+    - name: Install Zoom
+      apt:
+        deb: /home/{{ ansible_user }}/Downloads/zoom_amd64.deb
+        state: present
+      become: true

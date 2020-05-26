@@ -1,0 +1,10 @@
+---
+
+- hosts: localhost
+  tasks:
+
+    - name: Unzip terraform
+      unarchive: 
+        src: https://releases.hashicorp.com/terraform/0.12.25/terraform_0.12.25_linux_amd64.zip  
+        dest: /home/{{ ansible_user }}/.local/bin/
+        remote_src: yes
